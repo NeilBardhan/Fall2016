@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en-us">
+	<meta charset="utf-8">
+
+	<head>
+		<title>India Population Density Choropleth Map</title>
+        <style>
+        .tooltip{
+              background: indigo;
+              color: black;
+              display: none;
+              font-size: 16px;
+              left: 100px;
+              padding: 10px;
+              position: absolute;
+              text-align: center;
+              top: 95px;
+              width: 200px;
+              border-style: solid;
+              border-width: 3px;
+              border-color: black;
+        }
+
+        .st:hover {
+            fill:red;
+            stroke: white;
+            stroke-width: 1.5px;
+        }
+    </style>
+		<script src="https://d3js.org/d3.v4.min.js"></script>
+	</head>
+
+<body>
+	
+    	<script>
+		    var width = 1500,
+                height = 700;
+
+            var ds = [
+                            {density:828, state:"Uttar Pradesh"},
+                            {density:365, state:"Maharashtra"},
+                            {density:1102, state:"Bihar"},
+                            {density:1029, state:"West Bengal"},
+                            {density:236, state:"Madhya Pradesh"},
+                            {density:555, state:"Tamil Nadu"},
+                            {density:201, state:"Rajasthan"},
+                            {density:319, state:"Karnataka"},
+                            {density:308, state:"Gujarat"},
+                            {density:308, state:"Andhra Pradesh"},
+                            {density:269, state:"Orissa"},
+                            {density:859, state:"Kerala"},
+                            {density:414, state:"Jharkhand"},
+                            {density:397, state:"Assam"},
+                            {density:550, state:"Punjab"},
+                            {density:189, state:"Chhattisgarh"},
+                            {density:573, state:"Haryana"},
+                            {density:124, state:"Jammu And Kashmir"},
+                            {density:189, state:"Uttarakhand"},
+                            {density:123, state:"Himachal Pradesh"},
+                            {density:350, state:"Tripura"},
+                            {density:132, state:"Meghalaya"},
+                            {density:122, state:"Manipur"},
+                            {density:119, state:"Nagaland"},
+                            {density:394, state:"Goa"},
+                            {density:17, state:"Arunachal Pradesh"},
+                            {density:52, state:"Mizoram"},
+                            {density:86, state:"Sikkim"},
+                            {density:11297, state:"Delhi"},
+                            {density:2598, state:"Pondicherry"},
+                            {density:9252, state:"CHANDIGARH"},
+                            {density:46, state:"ANDAMAN AND NICOBAR ISLANDS"},
+                            {density:698, state:"DADRA AND NAGAR HAVELI"},
+                            {density:2013, state:"LAKSHADWEEP"}
+                        ]
+
+            function getColor(d){
+                if (d < 100){
+                return "#fef0d9";
+                } else if (d < 500){
+                return "#fdd49e";
+                } else if (d < 1000){
+                return "#fdbb84";
+                } else if (d < 1500){
+                return "#fc8d59";
+                } else if (d < 3000){
+                return "#e34a33";
+                } else {
+                return "#b30000";
+                }
+            }
+
+            var tooltip = d3.select("body")
+                .append('div')
+                .attr('class', 'tooltip')
+            
+            tooltip.append('div')
+                .attr('class', 'num');
+            
+            var svg = d3.select("body")
+                .append("svg")
+                .attr("align","center")
+                .attr("width", width)
+                .attr("height", height)
+				
+                  
+            var g = svg.append( "g" );
+
+            d3.queue()   // queue function loads all external data files asynchronously 
+                .defer(d3.json, "india.json") //our geometries
+                .defer(d3.csv, "indiapop.csv")
+                .await(processData);
+                
+            function processData(error, ind, indpop){
+                var projection = d3.geoMercator()
+                                    .scale(1)
+                                    .translate([0, 0]);
+
+                // path generator, translates geoJson coordinates into SVG path codes
+                var path = d3.geoPath()
+                        .projection(projection);
+                        
+                var b = path.bounds(ind),
+                s = 0.95/Math.max((b[1][0] - b[0][0])/width, (b[1][1] - b[0][1])/height),
+                t = [(width - s *(b[1][0] + b[0][0]))/2, (height - s * (b[1][1] + b[0][1]))/2];
+                
+                projection
+                    .scale(s)
+                    .translate(t);
+                
+                // g.append("rect").attr('width', width).attr('height', height)
+                //     .style('stroke', 'black').style('fill', 'none');
+
+                g.selectAll("path")
+                    .data(ind.features).enter().append("path")
+                    .attr("d", path)
+                    .attr("class", "st")
+                    .style("stroke-width", "0.75")
+                    .style("stroke", "black")
+                    .style("fill", function(d){
+                        for(var i in ds){
+                            if(ds[i].state == d.properties.name){
+                            return getColor(ds[i].density)
+                            }
+                        }
+                    })
+                    .on('mouseover', function(d){
+                        var key = d.properties.name
+                        var nm;
+                        var dns;
+                        for(var i in ds){
+                            if(ds[i].state == key){
+                                dns = ds[i].density
+                            }
+                        }
+                        tooltip.style('display', 'block')
+                        tooltip.style('background', getColor(dns))
+                        tooltip.select('.num').html(key +"<br>"+ dns + " People Per Sq. Km");
+                    })
+
+                    .on('mouseout', function(){
+                        tooltip.style('display', 'none');
+                    })
+
+                    .on('mousemove', function(d) {
+                        tooltip.style('top', (d3.event.layerY + 10) + 'px')
+                        .style('left', (d3.event.layerX + 10) + 'px');
+                      });
+          }
+
+		</script>
+	</body>
+</html>
