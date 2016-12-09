@@ -4,7 +4,7 @@
 
 ##1. Educational Attainment for USA
 
-I visualize the educational attainment state by state using data from the US Census. The **barplots** show the latest statewide educational attainment statistics for people with *High School*, *Bachelor's* or *Advanced* degrees. The **choropleth** map shows a timeline of these statistics and how they have changed from 1990 onwards.
+I visualize the educational attainment state by state using data from the [US Census](http://www.census.gov/hhes/socdemo/education/). The **barplots** show the latest statewide educational attainment statistics for people with *High School*, *Bachelor's* or *Advanced* degrees. The **choropleth** map shows a timeline of these statistics and how they have changed from 1990 onwards.
 
 ##2. India Statewide Fact File
 
