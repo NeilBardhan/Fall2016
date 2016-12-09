@@ -1,6 +1,6 @@
 #Information Visualization
 
-**This repository contains graphs, charts and visualizations that I have designed using d3js. All of the data has been sourced from public sources. Some of the designs have been inspired by examples that I have seen, I will reference them wherever I reuse/recreate them.**
+**This repository contains graphs, charts and visualizations that I have designed using d3js. All of the data has been sourced from public sources. Some of the designs have been inspired by examples that I come across. I will reference them wherever I reuse/recreate them.**
 
 ##1. Educational Attainment for USA
 
