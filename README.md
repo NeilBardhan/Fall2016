@@ -8,4 +8,4 @@ I visualize the educational attainment state by state using data from the [US Ce
 
 ##2. India Statewide Fact File
 
-I use an interactive map of India to present state by state facts like **State Capital**, **Population**, **Population Density** and **Sex Ratio** with data sourced from [Wikipedia](https://en.wikipedia.org/wiki/List_of_states_and_union_territories_of_India_by_population)
+I use an interactive map of India to present state by state facts like **State Capital**, **Population**, **Population Density** and **Sex Ratio** with data sourced from [Wikipedia](https://en.wikipedia.org/wiki/List_of_states_and_union_territories_of_India_by_population).
