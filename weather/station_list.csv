@@ -1,0 +1,16 @@
+station,name,city,state,tz
+SFO,SFO SAN FRANCISCO INTL,San Francisco,CA,America%2FLos_Angeles
+LAX,LAX LOS ANGELES INTL,Los Angeles,CA,America%2FLos_Angeles
+SEA,SEA SEATTLE_TACOMA INTL,Seattle,WA,America%2FLos_Angeles
+ORD,ORD CHICAGO O HARE,Chicago,IL,America%2FChicago
+CGX,CGX CHICAGO/MEIGS,Chicago,IL,America%2FChicago
+AUS,AUS AUSTIN BERGSTROM,Austin,TX,America%2FChicago
+MIA,MIA MIAMI INTL AIRPORT,Miami,FL,America%2FNew_York
+JFK,JFK NEW YORK/JF KENNEDY,New York,NY,America%2FNew_York
+NYC,NYC NEW YORK CITY,New York,NY,America%2FNew_York
+BOS,BOS BOSTON/LOGAN INTL,Boston,MA,America%2FNew_York
+EGLL,EGLL London - Heathrow,London,GB,Etc%2FUTC
+LFPO,LFPO PARIS/ORLY,Paris,FR,Etc%2FUTC
+VABB,VABB BOMBAY/SANTACRUZ,Mumbai,IN,Etc%2FUTC
+VHHH,VHHH HONG KONG INTL,Hong Kong,HK,Etc%2FUTC
+SBRJ,SBRJ SANTOS DUMONT/RI,Rio De Janeiro,BR,America%2FNew_York
